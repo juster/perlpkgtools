@@ -12,29 +12,29 @@ use strict;
 
 sub evalver
 {
-	my ($path, $mod) = @_;
+    my ($path, $mod) = @_;
     $mod ||= "";
 
-	open my $fh, '<', $path or die "open $path: $!";
+    open my $fh, '<', $path or die "open $path: $!";
 
-	while (<$fh>) {
-		next unless /\s*(?:\$${mod}::|\$)VERSION\s*=\s*(.+)/;
-		my $ver = eval $1;
-		return $ver unless $@;
-		warn qq{$path:$. bad version string "$ver"\n};
-	}
+    while (<$fh>) {
+        next unless /\s*(?:\$${mod}::|\$)VERSION\s*=\s*(.+)/;
+        my $ver = eval $1;
+        return $ver unless $@;
+        warn qq{$path:$. bad version string "$ver"\n};
+    }
 
-	close $fh;
-	return undef;
+    close $fh;
+    return undef;
 }
 
 sub maindistfile
 {
-	my ($dist, $dir) = @_;
+    my ($dist, $dir) = @_;
 
 
     my $libpath = join q{/}, 'lib', split /-/, "${dist}.pm";
-	my ($dumbpath) = ($dist =~ /([^-]+)$/);
+    my ($dumbpath) = ($dist =~ /([^-]+)$/);
     $dumbpath .= ".pm";
     my @paths = ($libpath, $dumbpath);
 
@@ -55,19 +55,19 @@ sub module_ver
 {
     my ($dist, $dir) = @_;
 
-	my $path = maindistfile($dist, $dir);
-	unless ($path) {
+    my $path = maindistfile($dist, $dir);
+    unless ($path) {
         return undef;
-	}
+    }
 
-	my $mod = $dist;
-	$mod =~ s/-/::/g;
+    my $mod = $dist;
+    $mod =~ s/-/::/g;
 
-	my $ver = evalver($path, $mod);
-	unless ($ver) {
-		warn "failed to find version in module file for $dist\n";
+    my $ver = evalver($path, $mod);
+    unless ($ver) {
+        warn "failed to find version in module file for $dist\n";
         return undef;
-	}
+    }
 
     return $ver;
 }
