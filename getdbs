@@ -1,0 +1,40 @@
+#!/bin/sh
+##
+# Downloads repository databases into the "dbs" directory in the CWD.
+# Extracts them and deletes the compressed databases.
+#
+# Args: repository names
+
+ARCH='i686'
+
+repourl() {
+    echo "ftp://ftp.archlinux.org/$1/os/$2/$1.db.tar.gz"
+}
+
+if [ "$#" -eq 0 ] ; then
+    set -- 'core' 'extra' 'community'
+fi
+
+rm -rf dbs
+mkdir dbs
+cd dbs
+
+while [ "$#" -gt 0 ] ; do
+    repo=$1
+    shift
+    url=$(repourl "$repo" "$ARCH")
+
+    if ! curl -LO "$url" ; then
+        echo "curl failed to dl $url"
+        exit 1
+    fi
+
+    mkdir "$repo"
+    cd "$repo"
+    if ! tar -zxf "../$repo.db.tar.gz" ; then
+        echo "tar failed to extract db"
+        exit 1
+    fi
+    cd ..
+    rm "$repo.db.tar.gz"
+done

@@ -1,0 +1,62 @@
+Perl package tools
+==================
+Simple tools for use for packaging perl. Right now these are just simply
+for determining which distributions and modules are bundled with perl.
+This can be used to generate a provides list. There are also commands
+to check perl dependencies that are created by other modules in the
+official ArchLinux repositories.
+
+
+Provides List
+-------------
+These commands scan the files in the extracted perl source tarball and
+dump out lists of core modules and bundles distributions. This differs
+from Module::CoreList because it treats distributions differently.
+
+Commands:
+listdists       List the distributions in the perl source's "dist" and
+                "cpan" directories.
+listmods        Lists the modules in the perl source's "lib" directory.
+
+
+Dep Checking
+------------
+
+I plan to use these commands to check to make sure that all perl
+requirements are met.
+
+Commands:
+getdbs          Download package databases and extract them in our cwd.
+findperlreqs    Scans the databases and prints requirements on perl modules.
+
+
+The Distribution/Module Question
+--------------------------------
+I have the feeling that treating modules the same as packages is a bad
+idea. Previously, all _modules_ were included in perl's provides
+list. The downside is that each distribution can have more than one
+module. This seems redundant and ends up increasing the size of the
+provides array. The less-redundant alternative is to only list
+_distributions_ in the provides array. The downside to this is that
+people unfamiliar with perl will create dependency on a module instead
+of the distribution that contains the module.
+
+This is further foobar-ed by core modules in the "lib" directory which
+simply have no distribution.  Except, oh yeah, some do. Like "version"
+for example. It would seem that we would have no choice but to break
+the rule and "provide" a list of modules, converted those to package
+names and versions along with the core distributions.
+
+This strange confusion between module and distribution is further
+compounded by the fact that CPAN mostly deals with modules and not
+distributions. Yet dependencies specified in distributions are listed
+for modules! The CPAN shell then has to cross reference these module
+deps into distribution that it can fetch. I don't know the exact
+mechanics but it seems that python and ruby don't have this problem.
+Gems or eggs merely depend on other gems or eggs and not a particular
+_source file_ (perl's module) inside the gem or egg.
+
+Anyways, I will have to organize my thoughts more on this later.
+
+Justin Davis
+jrcd83()gmail!com

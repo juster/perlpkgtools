@@ -1,0 +1,367 @@
+community ack perl-file-next 
+community bugzilla perl-timedate perl-datetime perl-cgi perl-chart perl-email-abstract perl-email-address perl-email-date-format perl-email-messageid perl-email-mime perl-email-mime-attachment-stripper perl-email-mime-contenttype perl-email-mime-encodings perl-email-mime-modifier perl-email-mime-creator perl-email-reply perl-email-send perl-email-simple perl-email-simple-creator perl-gd perl-gdgraph perl-gdtextutil perl-patchreader perl-return-value perl-template-gd perl-ldap perl-soap-lite perl-authen-sasl perl-xml-twig perl-html-scrubber perl-authen-radius perl-template-toolkit 
+community checkgmail perl-gtk2-trayicon perl-libwww perl-crypt-ssleay perl-xml-simple perl-freezethaw perl-crypt-simple perl-crypt-blowfish 
+community clive perl-json-xs perl-getopt-argvfile 
+community clusterssh perl-tk perl-x11-protocol 
+community ddclient perl-io-socket-ssl 
+community dkfilter perl-crypt-openssl-rsa perl-mailtools perl-net-dns perl-net-server perl-mail-domainkeys 
+community docbook2x perl-sgmls perl-xml-sax 
+community fotoxx perl-exiftool 
+community gcstar perl-libwww perl-xml-simple perl-net-snmp perl-xml-libxml perl-sort-naturally 
+community gnuhtml2latex perl-html-parser 
+community gprename perl-libintl-perl perl-locale-gettext 
+community gpsdrive perl-date-manip perl-timedate perl-dbi perl-file-slurp perl-www-mechanize perl-libwww perl-uri perl-text-query perl-www-curl perl-xml-parser perl-xml-simple perl-xml-twig perl-xml-writer 
+community gresolver perl-locale-gettext perl-net-ipv6addr perl-net-ipv4addr 
+community icoutils perl-libwww>=5.64 
+community lire perl-dbd-sqlite2 perl-libintl-perl perl-curses-ui perl-curses 
+community mythplugins-mythweather perl-date-manip perl-libwww perl-soap-lite perl-xml-sax perl-xml-simple perl-xml-xpath perl-image-size perl-datetime-format-iso8601 
+community mythtv perl-dbd-mysql perl-libwww perl-net-upnp 
+community mytop perl-term-readkey perl-dbd-mysql 
+community namazu perl-file-mmagic 
+community nuvexport perl-date-manip perl-dbd-mysql 
+community perl-algorithm-annotate perl-algorithm-diff 
+community perl-algorithm-diff 
+community perl-anyevent-xmpp perl-anyevent perl-digest-sha1 perl-object-event perl-authen-sasl perl-net-libidn perl-xml-writer perl-net-ssleay 
+community perl-app-cli 
+community perl-array-compare 
+community perl-authen-radius perl-data-hexdump>=0.02 
+community perl-authen-sasl 
+community perl-berkeleydb 
+community perl-cache-memcached perl-string-crc32 
+community perl-cgi perl-fcgi>=0.67 
+community perl-cgi-session 
+community perl-chart perl-gd>=1.2 
+community perl-class-accessor 
+community perl-class-accessor-chained perl-class-accessor 
+community perl-class-autouse 
+community perl-class-data-inheritable 
+community perl-class-factory-util 
+community perl-class-methodmaker 
+community perl-class-singleton 
+community perl-clone 
+community perl-color-calc perl-params-validate perl-graphics-colornames-www perl-graphics-colornames 
+community perl-common-sense 
+community perl-config-general 
+community perl-config-tiny 
+community perl-convert-asn1 
+community perl-cpanplus-dist-arch 
+community perl-crypt-blowfish 
+community perl-crypt-cbc 
+community perl-crypt-des 
+community perl-crypt-openssl-bignum 
+community perl-crypt-openssl-random 
+community perl-crypt-openssl-rsa perl-crypt-openssl-random perl-crypt-openssl-bignum 
+community perl-crypt-simple 
+community perl-crypt-smbhash 
+community perl-curses 
+community perl-curses-ui perl-curses perl-term-readkey perl-test-pod 
+community perl-curses-ui-poe perl-curses-ui perl-poe 
+community perl-danga-socket perl-sys-syscall 
+community perl-data-dumper 
+community perl-data-hexdump 
+community perl-data-hierarchy perl-test-exception 
+community perl-data-structure-util 
+community perl-datetime perl-datetime-timezone>=0.59 perl-datetime-locale>=0.41 perl-params-validate>=0.76 perl-math-round 
+community perl-datetime-cron-simple 
+community perl-datetime-event-ical perl-datetime perl-datetime-event-recurrence 
+community perl-datetime-event-recurrence perl-datetime perl-datetime-set 
+community perl-datetime-format-builder perl-class-factory-util>=1.6 perl-datetime>=0.12 perl-datetime-format-strptime>=1.04 perl-params-validate>=0.72 
+community perl-datetime-format-ical perl-datetime-timezone perl-datetime-event-ical perl-datetime perl-params-validate perl-datetime-set 
+community perl-datetime-format-iso8601 perl-datetime-format-builder>=0.770.0 perl-datetime>=0.180.0 
+community perl-datetime-format-mail perl-datetime perl-params-validate>=0.67 
+community perl-datetime-format-strptime perl-datetime>=0.4304 perl-datetime-locale>=0.45 perl-datetime-timezone>=0.79 perl-params-validate>=0.64 
+community perl-datetime-format-w3cdtf perl-datetime 
+community perl-datetime-locale perl-params-validate perl-list-moreutils 
+community perl-datetime-set perl-set-infinite>=0.59 perl-datetime>=0.12 
+community perl-datetime-timezone perl-class-singleton>=1.03 perl-params-validate>=0.72 
+community perl-dbd-odbc perl-dbi 
+community perl-dbd-pg perl-dbi>=1.52 
+community perl-dbd-sqlite2 perl-dbi 
+community perl-dbd-sybase perl-dbi>=1.52 
+community perl-dbi-shell perl-text-reform perl-io-tee 
+community perl-devel-symdump 
+community perl-device-gsm perl-device-modem perl-test-simple 
+community perl-device-modem perl-device-serialport 
+community perl-device-serialport 
+community perl-digest-md5 
+community perl-djabberd perl-danga-socket perl-log-log4perl perl-unicode-stringprep perl-net-dns perl-xml-libxml perl-net-ssleay 
+community perl-djabberd-rosterstorage-sqlite perl-djabberd perl-dbd-sqlite 
+community perl-email-abstract perl-email-simple>=1.91 
+community perl-email-address 
+community perl-email-messageid perl-email-address>=1.80 
+community perl-email-mime perl-email-mime-encodings>=1.3 perl-mime-types>=1.13 perl-email-simple>=2.003 perl-email-mime-contenttype>=1.011 perl-email-messageid 
+community perl-email-mime-attachment-stripper perl-email-mime-modifier>=1.442 perl-email-mime-contenttype>=1.0 perl-email-mime>=1.861 
+community perl-email-mime-contenttype 
+community perl-email-mime-encodings 
+community perl-email-reply perl-email-address>=1.80 perl-email-mime-creator>=1.41 perl-email-mime>=1.82 perl-email-abstract>=2.01 perl-email-mime-modifier>=1.42 
+community perl-email-send perl-email-address>=1.80 perl-email-simple>=1.92 perl-return-value>=1.28 
+community perl-email-simple perl-email-date-format 
+community perl-extutils-xsbuilder perl-parse-recdescent perl-tie-ixhash 
+community perl-file-chdir 
+community perl-file-mmagic 
+community perl-file-next 
+community perl-file-nfslock 
+community perl-file-path-expand 
+community perl-file-remove 
+community perl-file-slurp 
+community perl-file-type 
+community perl-finance-quote perl-html-tree perl-html-tableextract perl-crypt-ssleay perl-libwww 
+community perl-freezethaw 
+community perl-fuse 
+community perl-gd 
+community perl-gdgraph perl-gd>=1.18 perl-gdtextutil>=0.80 
+community perl-gdtextutil perl-gd>=1 
+community perl-getopt-argvfile 
+community perl-gettext 
+community perl-gnome2-wnck perl-extutils-depends perl-extutils-pkgconfig 
+community perl-graphics-colornames 
+community perl-graphics-colornames-www perl-graphics-colornames 
+community perl-gssapi 
+community perl-gstreamer perl-extutils-pkgconfig>=1.07 perl-extutils-depends>=0.205 
+community perl-gstreamer-interfaces perl-extutils-pkgconfig perl-gstreamer perl-extutils-depends 
+community perl-gtk2-mozembed perl-extutils-pkgconfig>=1.03 perl-extutils-depends>=0.20 
+community perl-gtk2-sexy 
+community perl-gtk2-trayicon 
+community perl-gtk2-webkit perl-extutils-depends perl-extutils-pkgconfig 
+community perl-html-element-extended 
+community perl-html-highlight 
+community perl-html-scrubber perl-html-parser>=3 
+community perl-html-strip 
+community perl-html-tableextract perl-html-parser perl-html-element-extended 
+community perl-html-tagfilter perl-uri perl-html-parser 
+community perl-html-template-expr perl-html-template perl-parse-recdescent 
+community perl-html-tree perl-html-tagset>=3.02 perl-html-parser>=3.46 
+community perl-http-cache-transparent perl-libwww 
+community perl-http-lite 
+community perl-http-response-encoding perl-libwww 
+community perl-http-server-simple perl-uri 
+community perl-ical-parser perl-freezethaw perl-io-string perl-datetime-format-ical perl-text-vfile-asdata 
+community perl-image-info 
+community perl-image-size 
+community perl-inline perl-parse-recdescent>=1.8 
+community perl-inline-java perl-inline 
+community perl-io-bufferedselect 
+community perl-io-digest 
+community perl-io-multiplex 
+community perl-io-pager 
+community perl-io-string 
+community perl-io-tee 
+community perl-io-tty 
+community perl-ipc-shareable 
+community perl-json 
+community perl-json-xs perl-common-sense 
+community perl-ldap perl-convert-asn1 perl-xml-sax-writer 
+community perl-libapreq2 
+community perl-lingua-en-numbers 
+community perl-lingua-en-numbers-ordinate 
+community perl-lingua-preferred 
+community perl-linux-pid 
+community perl-list-moreutils 
+community perl-locale-maketext-lexicon 
+community perl-mail-box perl-timedate perl-digest-hmac perl-file-remove>=0.20 perl-io-stringy perl-mime-types>=1.004 perl-mailtools perl-object-realize-later>=0.14 perl-uri>=1.23 perl-user-identity>=0.90 
+community perl-mail-box-parser-c 
+community perl-mail-dkim perl-crypt-openssl-rsa>=0.24 perl-digest-sha1 perl-mailtools perl-net-dns 
+community perl-mail-domainkeys perl-crypt-openssl-rsa perl-mailtools perl-net-dns>=0.34 
+community perl-mail-sendmail 
+community perl-mail-spf-query perl-net-cidr-lite>=0.15 perl-net-dns>=0.46 perl-sys-hostname-long perl-uri 
+community perl-mail-transport-dbx 
+community perl-math-base85 
+community perl-net-dbus perl-xml-twig 
+community perl-net-ipv4addr 
+community perl-net-ipv6addr 
+community perl-net-jabber perl-net-xmpp 
+community perl-net-libidn 
+community perl-net-smtp-ssl perl-io-socket-ssl 
+community perl-net-snmp perl-digest-hmac perl-digest-sha1 perl-crypt-des 
+community perl-net-telnet 
+community perl-net-xmpp perl-digest-sha1 perl-xml-stream 
+community perl-object-event 
+community perl-object-multitype 
+community perl-object-realize-later 
+community perl-params-validate 
+community perl-parse-recdescent 
+community perl-parse-yapp 
+community perl-patchreader 
+community perl-perlio-eol 
+community perl-pod-coverage perl-devel-symdump>=2.01 
+community perl-poe perl-io-tty>=1.08 
+community perl-poe-component-client-dns perl-net-dns perl-poe 
+community perl-poe-component-client-http perl-uri perl-poe-component-client-keepalive perl-poe 
+community perl-poe-component-client-keepalive perl-poe-component-client-dns perl-poe 
+community perl-poe-component-ikc perl-poe 
+community perl-regexp-shellish 
+community perl-rename 
+community perl-return-value 
+community perl-set-infinite 
+community perl-sgmls 
+community perl-sort-naturally 
+community perl-spiffy 
+community perl-string-crc32 
+community perl-sub-uplevel 
+community perl-svn-mirror perl-svn-simple-edit perl-uri perl-class-accessor perl-file-chdir perl-timedate perl-term-readkey 
+community perl-svn-simple-edit 
+community perl-sys-syscall 
+community perl-template-gd perl-template-toolkit>=2.14 perl-gd>=1.14 
+community perl-term-animation perl-curses 
+community perl-term-progressbar perl-class-methodmaker perl-term-readkey 
+community perl-term-read-password 
+community perl-term-readline 
+community perl-test-base perl-spiffy>=0.30 
+community perl-test-deep perl-test-nowarnings perl-test-tester 
+community perl-test-differences perl-text-diff 
+community perl-test-exception perl-sub-uplevel 
+community perl-test-manifest 
+community perl-test-mockobject perl-universal-can>=1.11 perl-universal-isa>=0.06 
+community perl-test-nowarnings perl-test-tester 
+community perl-test-number-delta 
+community perl-test-pod-coverage perl-pod-coverage 
+community perl-test-simple 
+community perl-test-tester 
+community perl-test-warn perl-tree-dag-node perl-sub-uplevel>=0.12 
+community perl-text-charwidth 
+community perl-text-diff perl-algorithm-diff>=1.1900 
+community perl-text-kakasi 
+community perl-text-markdown 
+community perl-text-query 
+community perl-text-reform 
+community perl-text-vfile-asdata perl-class-accessor-chained 
+community perl-text-wrapi18n perl-text-charwidth 
+community perl-tidy 
+community perl-tie-cphash 
+community perl-tie-hash-indexed 
+community perl-tie-ixhash 
+community perl-time-duration 
+community perl-time-format 
+community perl-time-human 
+community perl-tk-tablematrix perl-tk 
+community perl-tree-dag-node 
+community perl-unicode-stringprep 
+community perl-unicode-utf8simple 
+community perl-universal-can 
+community perl-universal-isa 
+community perl-user-identity 
+community perl-www-curl 
+community perl-www-mechanize perl-libwww perl-html-parser perl-uri perl-http-response-encoding perl-http-server-simple perl-test-warn 
+community perl-www-sms 
+community perl-x11-protocol 
+community perl-xml-atom perl-class-data-inheritable perl-uri perl-xml-libxml>=1.64 perl-xml-xpath 
+community perl-xml-filter-buffertext perl-xml-sax 
+community perl-xml-libxml perl-xml-sax>=0.11 perl-xml-namespacesupport>=1.07 
+community perl-xml-libxslt perl-xml-libxml 
+community perl-xml-regexp 
+community perl-xml-rss perl-datetime perl-datetime-format-mail perl-datetime-format-w3cdtf perl-html-parser 
+community perl-xml-rsslite 
+community perl-xml-sax-expat perl-xml-namespacesupport perl-xml-sax 
+community perl-xml-sax-writer perl-text-iconv perl-xml-filter-buffertext 
+community perl-xml-smart 
+community perl-xml-stream perl-authen-sasl 
+community perl-xml-writer 
+community perl-xml-xpath 
+community perl-xmms 
+community perlio-via-dynamic 
+community perlio-via-symlink 
+community perlpanel perl-xmms perl-xml-simple perl-gnome2-wnck perl-locale-gettext perl-date-manip 
+community postgrey perl-net-server perl-berkeleydb perl-io-multiplex 
+community qemu-launcher perl-locale-gettext 
+community shp2svg perl-math-round 
+community snownews perl-xml-libxml perl-xml-libxslt 
+community system-tools-backends perl-net-dbus 
+community tenshi perl-io-bufferedselect 
+community volwheel perl-gtk2-trayicon 
+core perl 
+extra dvdrip perl-gtk2-ex-formfactory perl-libintl-perl perl-event-execflow 
+extra frozen-bubble perl-sdl perl-ipc-system-simple perl-compress-bzip2 perl-file-which 
+extra git perl-error 
+extra help2man perl-locale-gettext 
+extra hugin perl-exiftool 
+extra icon-naming-utils perl-xml-simple 
+extra intltool perl-xml-parser 
+extra mod_perl perl-linux-pid 
+extra mp32ogg perl-mp3-info perl-string-shellquote 
+extra munin perl-html-template perl-date-manip perl-log-log4perl 
+extra munin-node perl-net-server 
+extra perl-alien-sdl perl-file-sharedir perl-capture-tiny 
+extra perl-anyevent perl-event 
+extra perl-appconfig 
+extra perl-archive-zip 
+extra perl-bit-vector perl-carp-clan 
+extra perl-capture-tiny 
+extra perl-carp-clan 
+extra perl-class-inspector 
+extra perl-compress-bzip2 
+extra perl-convert-binhex 
+extra perl-crypt-ssleay 
+extra perl-date-calc perl-bit-vector 
+extra perl-date-manip perl-yaml-syck 
+extra perl-dbd-mysql perl-dbi 
+extra perl-dbd-sqlite perl-dbi>=1.61 
+extra perl-dbi 
+extra perl-digest-hmac perl-digest-sha1 
+extra perl-digest-nilsimsa 
+extra perl-digest-sha1 
+extra perl-email-date-format 
+extra perl-error 
+extra perl-event 
+extra perl-event-execflow perl-anyevent perl-libintl-perl 
+extra perl-exiftool 
+extra perl-extutils-depends 
+extra perl-extutils-pkgconfig 
+extra perl-fcgi 
+extra perl-file-basedir 
+extra perl-file-desktopentry perl-file-basedir 
+extra perl-file-mimeinfo perl-file-basedir perl-file-desktopentry 
+extra perl-file-sharedir perl-class-inspector 
+extra perl-file-tail 
+extra perl-file-which 
+extra perl-gtk2-ex-formfactory 
+extra perl-html-parser perl-html-tagset 
+extra perl-html-tagset 
+extra perl-html-template 
+extra perl-io-socket-ssl perl-net-ssleay 
+extra perl-io-stringy 
+extra perl-ipc-system-simple 
+extra perl-libintl-perl 
+extra perl-libwww perl-uri perl-html-parser 
+extra perl-locale-gettext 
+extra perl-log-log4perl 
+extra perl-mail-spf perl-error perl-netaddr-ip perl-uri perl-net-dns 
+extra perl-mailtools 
+extra perl-math-round 
+extra perl-mime-lite perl-email-date-format perl-mailtools perl-mime-types 
+extra perl-mime-tools perl-mailtools perl-io-stringy perl-convert-binhex 
+extra perl-mime-types 
+extra perl-mp3-info 
+extra perl-net-cidr-lite 
+extra perl-net-dns perl-digest-hmac perl-net-ip 
+extra perl-net-dns-resolver-programmable perl-net-dns 
+extra perl-net-ip 
+extra perl-net-server 
+extra perl-net-ssleay 
+extra perl-net-upnp 
+extra perl-netaddr-ip 
+extra perl-passwd-md5 
+extra perl-sdl perl-alien-sdl perl-tie-simple 
+extra perl-soap-lite perl-crypt-ssleay perl-mime-lite perl-libwww perl-uri perl-mime-tools perl-io-socket-ssl perl-xml-parser perl-fcgi perl-class-inspector 
+extra perl-string-shellquote 
+extra perl-sys-hostname-long 
+extra perl-template-toolkit perl-appconfig 
+extra perl-term-readkey 
+extra perl-test-pod 
+extra perl-text-iconv 
+extra perl-text-patch 
+extra perl-tie-simple 
+extra perl-time-hires 
+extra perl-timedate 
+extra perl-tk 
+extra perl-unicode-string 
+extra perl-uri 
+extra perl-xml-namespacesupport 
+extra perl-xml-parser 
+extra perl-xml-sax perl-xml-namespacesupport>=0.03 
+extra perl-xml-simple perl-xml-parser 
+extra perl-xml-twig perl-xml-parser>=2.23 perl-text-iconv 
+extra perl-yaml 
+extra perl-yaml-syck 
+extra razor perl-net-dns perl-digest-sha1 perl-uri perl-digest-nilsimsa 
+extra spamassassin perl-net-dns perl-uri perl-html-parser perl-digest-sha1 perl-io-socket-ssl perl-libwww perl-mail-spf 
+extra xmlto perl-yaml-syck perl-test-pod 

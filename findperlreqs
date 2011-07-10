@@ -1,0 +1,45 @@
+#!/bin/sh
+##
+# Looks through extracted databases searching for dependencies on
+# perl module packages.
+#
+# Args: repository dirs (one level inside database dir)
+# Output: [repo name] [package name] [space seperated deps]
+
+if [ $# -eq 0 ] ; then
+    echo "Usage: $0 [paths to repo dirs inside db dir]"
+    exit 1
+fi
+
+rm -f perlpkgs
+while [ $# -gt 0 ] ; do
+    repo=$1; shift
+    find "$repo" -maxdepth 1 -type d | awk '
+BEGIN { RS="\n"; FS="/" }
+
+{
+    pkgdir = $0; repo = $(NF-1)
+
+    RS = ""; FS = "\n"
+    path = pkgdir "/desc"
+    while(getline<path == 1) {
+        if ($1 == "%NAME%") { name = $2; break }
+    }
+    close path
+
+    perldeps = ""
+    path = pkgdir "/depends"
+    while(getline<path == 1) {
+        if($1 != "%DEPENDS%") continue
+        for (i=2; i<=NF; i++) {
+            if ($i ~ /^perl-/) perldeps = perldeps $i " "
+        }
+    }
+    close path
+
+    RS="\n"; FS="/"
+    if (name ~ /^perl/ || length(perldeps) > 0)
+        print repo, name, perldeps
+}
+'
+done
