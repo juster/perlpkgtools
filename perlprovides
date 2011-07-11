@@ -3,7 +3,7 @@
 # Print a perl provides list for all the distributions bundled with perl.
 ##
 # Arg: path to the perl source directory
-# Output: [package name] [package version]
+# Output: a provides array suitable to insert into the perl package's PKGBUILD.
 
 if [ -z "$1" ] ; then
     echo "Usage: $0 [path to perl source directory]"
