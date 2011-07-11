@@ -6,26 +6,18 @@ This can be used to generate a provides list. There are also commands
 to check perl dependencies that are created by other modules in the
 official ArchLinux repositories.
 
-
-Provides List
--------------
-These commands scan the files in the extracted perl source tarball and
-dump out lists of core modules and bundles distributions. This differs
-from Module::CoreList because it treats distributions differently.
-
-Commands:
+Tools
+-----
 listdists       List the distributions in the perl source's "dist" and
                 "cpan" directories.
 listmods        Lists the modules in the perl source's "lib" directory.
+coretoo         Filter out module names that are only supplied by perl.
+                Print distributions which also supply core modules.
+                (Pipe listmod's output into uncored)
+metadb          Utility script for querying the cpan meta db.
+                (http://cpanmetadb.appspot.com)
+dist2pkg        Convert distribution names/vers to package names/vers.
 
-
-Dep Checking
-------------
-
-I plan to use these commands to check to make sure that all perl
-requirements are met.
-
-Commands:
 getdbs          Download package databases and extract them in our cwd.
 findperlreqs    Scans the databases and prints requirements on perl modules.
 
