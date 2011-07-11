@@ -132,6 +132,6 @@ for my $subdir (qw/cpan dist/) {
     my $found_ref = scan_distroot("$srcdir/$subdir");
     while (@$found_ref > 0) {
         my ($dist, $ver) = splice @$found_ref, 0, 2;
-        print "$subdir $dist $ver\n";
+        print "$dist $ver\n";
     }
 }
