@@ -3,9 +3,37 @@
 # Prints out a list of the modules inside the perl source's "lib" dir.
 #
 # Args: Path to the extracted perl source directory.
-# Output: [module name]
+# Output: [module name] [version if known]
 
 use File::Find;
+use warnings;
+use strict;
+
+# copy/pasted from listdists
+sub evalver
+{
+    my ($path, $mod) = @_;
+    $mod ||= "";
+
+    open my $fh, '<', $path or die "open $path: $!";
+
+    while (<$fh>) {
+        next unless /\s*(?:\$${mod}::|\$)VERSION\s*=\s*.+/;
+        my $line = $_;
+        chomp $line;
+
+        my $ver;
+        {
+            no strict;
+            $ver = eval $line;
+        }
+        return $ver unless $@;
+        warn qq{$path:$. bad version string "$line"\n};
+    }
+
+    close $fh;
+    return undef;
+}
 
 my $srcdir = shift @ARGV or die "Usage: $0 [perl source dir]\n";
 my $libdir = "$srcdir/lib/";
@@ -14,7 +42,10 @@ die "failed to find $libdir directory" unless -d $libdir;
 
 find({'no_chdir' => 1,
       'wanted' => sub {
-          next unless s{\.pm\z}{};
+          return unless s{\.pm\z}{};
+          my $path = "$_.pm";
           s{\A$libdir}{}; s{/}{::}g;
-          print;
+          my $mod = $_;
+          my $ver = evalver($path) || q{};
+          print "$mod $ver";
       }}, $libdir);
