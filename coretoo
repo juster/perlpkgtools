@@ -1,0 +1,15 @@
+#!/usr/bin/awk -f
+##
+# Find if a module is only provided by the "perl" source distribution.
+# If it is not, print the other distribution that provides it along
+# with the version number for the module that was supplied.
+#
+# Input: [module name] [module/dist version]
+# Output: [CPAN dist name] [same version]
+
+{
+    cmd = "./metadb " $1
+    cmd | getline dist 
+    close cmd
+    if (dist != "perl") print dist, $2
+}
