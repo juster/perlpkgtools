@@ -1,0 +1,21 @@
+#!/usr/bin/awk -f
+##
+# Given a list of perl package names and versions, print a provides string.
+# Try to economize on space as much as possible.
+
+BEGIN { line = "provides=("; indent = "    "; max = 80 }
+
+{
+    entry = $1 "=" $2
+    if (length(line) + 1 + length(entry) > max) {
+        print line
+        line = indent entry
+    }
+    else {
+        # no space after provides=(
+        if (i++ == 0) line = line entry
+        else line = line " " entry
+    }
+}
+
+END { print line ")" }
