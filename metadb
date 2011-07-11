@@ -1,0 +1,18 @@
+#!/bin/sh
+##
+# Lookup a module on the meta database.
+#
+# Arg: name of module
+# Output: name of distribution who provides the module
+
+curl --silent "http://cpanmetadb.appspot.com/v1.0/package/$1" | awk '
+BEGIN { FS=": " }
+
+$1 == "distfile" {
+    dist = arr[split($2, arr, "/")]
+    len = split(dist, arr, "-")
+    dist = arr[1]
+    for (i=2; i<len; i++) dist = dist "-" arr[i]
+    print dist
+}
+'
