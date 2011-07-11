@@ -1,0 +1,72 @@
+#!/usr/bin/perl
+##
+# Convert names and versions of distributions into ArchLinux package names
+# and versions. Avoid printing duplicates package names.
+##
+# Input: [CPAN distribution name] [perl distribution/module version]
+# Output: [ArchLinux package name] [arch pkg version]
+
+use warnings;
+use strict;
+use English qw(-no_match_vars);
+
+# Copied from CPANPLUS::Dist::Arch
+sub dist_pkgname
+{
+    my ($distname) = @_;
+
+    # Package names should be lowercase and consist of alphanumeric
+    # characters only (and hyphens!)...
+    $distname =  lc $distname;
+    $distname =~ tr/_/-/;
+    $distname =~ tr/-a-z0-9+//cd; # Delete all other chars
+    $distname =~ s/-[+]/-/g;      # + next to - looks weird
+    $distname =~ s/[+]-/-/g;
+    $distname =~ tr/-/-/s;
+
+    # Delete leading or trailing hyphens...
+    $distname =~ s/\A-//;
+    $distname =~ s/-\z//;
+
+    die qq{Dist name '$distname' completely violates packaging standards}
+        if ( length $distname == 0 );
+
+    # Don't prefix the package with perl- if it IS perl...
+    $distname = "perl-$distname" unless ( $distname eq 'perl' );
+
+    return $distname;
+}
+
+sub dist_pkgver
+{
+    my ($version) = @_;
+
+    # Package versions should be numbers and decimal points only...
+    $version =~ tr/-/./;
+    $version =~ tr/_0-9.-//cd;
+
+    # Developer packages have a ..._## at the end though...
+    unless (( $version =~ tr/_/_/ == 1 ) && ( $version =~ /\d_\d+\z/ )) {
+        $version =~ tr/_//d; # Delete underscores otherwise.
+    }
+
+    # Remove developer versions because pacman has no special logic
+    # to handle comparing them to regular versions like perl does.
+    $version =~ s/_\d+\z//;
+
+    $version =~ tr/././s;
+    $version =~ s/[.]$//;
+    $version =~ s/^[.]//;
+
+    return $version;
+}
+
+$OFS = " ";
+$ORS = "\n";
+
+my %seen;
+while (<>) {
+    my @F = split;
+    my ($pkgname, $pkgver) = (dist_pkgname($F[0]), dist_pkgver($F[1]));
+    print $pkgname, $pkgver unless $seen{$pkgname}++;
+}
