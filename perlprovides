@@ -1,0 +1,15 @@
+#!/bin/sh
+##
+# Print a perl provides list for all the distributions bundled with perl.
+##
+# Arg: path to the perl source directory
+# Output: [package name] [package version]
+
+if [ -z "$1" ] ; then
+    echo "Usage: $0 [path to perl source directory]"
+    exit 1
+fi
+
+./listdists $1 > coredists
+./listmods $1 | ./oncpan >> coredists
+./dist2pkg coredists | sort | ./fmtprovides
