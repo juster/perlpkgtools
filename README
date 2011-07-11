@@ -6,18 +6,26 @@ This can be used to generate a provides list. There are also commands
 to check perl dependencies that are created by other modules in the
 official ArchLinux repositories.
 
-Tools
------
+The tools are coded in sh, awk, and perl.
+
+Provides Tools
+--------------
+perlprovides    Pass it the path to a perl source directory and it will
+                print a provides list for perl's PKGBUILD.
+                Read this source first.
+fmtprovides     Awk script that converts the name-value pairs to
+                the PKGBUILD provides list.
 listdists       List the distributions in the perl source's "dist" and
                 "cpan" directories.
 listmods        Lists the modules in the perl source's "lib" directory.
-coretoo         Filter out module names that are only supplied by perl.
-                Print distributions which also supply core modules.
-                (Pipe listmod's output into uncored)
-metadb          Utility script for querying the cpan meta db.
-                (http://cpanmetadb.appspot.com)
+oncpan          Filter out module names that are only supplied by perl.
+                Print CPAN distributions which also supply core modules.
+metadb          Utility script for querying http://cpanmetadb.appspot.com.
+                Used by oncpan.
 dist2pkg        Convert distribution names/vers to package names/vers.
 
+Misc Tools
+----------
 getdbs          Download package databases and extract them in our cwd.
 findperlreqs    Scans the databases and prints requirements on perl modules.
 
