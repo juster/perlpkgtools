@@ -10,25 +10,28 @@ The tools are coded in sh, awk, and perl.
 
 Provides Tools
 --------------
-perlprovides    Pass it the path to a perl source directory and it will
-                print a provides list for perl's PKGBUILD.
-                Read this source first.
-fmtprovides     Awk script that converts the name-value pairs to
-                the PKGBUILD provides list.
-listdists       List the distributions in the perl source's "dist" and
+gencorelist     Pass it the path to a perl source directory and it will
+                write a list of core distributions to "coredists".
+                Run this first.
++ listdists     List the distributions in the perl source's "dist" and
                 "cpan" directories.
-listmods        Lists the modules in the perl source's "lib" directory.
-oncpan          Filter out module names that are only supplied by perl.
++ listmods      Lists the modules in the perl source's "lib" directory.
++ oncpan        Filter out module names that are only supplied by perl.
                 Print CPAN distributions which also supply core modules.
-metadb          Utility script for querying http://cpanmetadb.appspot.com.
+++ metadb       Utility script for querying http://cpanmetadb.appspot.com.
                 Used by oncpan.
-dist2pkg        Convert distribution names/vers to package names/vers.
+perlprovides    Run this next and it will print the value of the provides
+                array for perl's PKGBUILD.
++ fmtprovides   Awk script that converts the name-value pairs to
+                the PKGBUILD provides list.
++ dist2pkg      Convert distribution names/vers to package names/vers.
 
 Misc Tools
 ----------
 getdbs          Download package databases and extract them in our cwd.
 findperlreqs    Scans the databases and prints requirements on perl modules.
-
+findpkgdups     Scans the databases and prints /^perl-/ packages that
+                have the same name as provide-ed distributions.
 
 The Distribution/Module Question
 --------------------------------
