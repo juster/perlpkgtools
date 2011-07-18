@@ -1,0 +1,11 @@
+#!/bin/sh
+##
+# Generate the list of core distributions.
+
+if [ -z "$1" ] ; then
+    echo "Usage: $0 [path to perl source directory]"
+    exit 1
+fi
+
+./listdists $1 >coredists
+./listmods $1 | ./oncpan >>coredists
