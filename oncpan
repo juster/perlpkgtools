@@ -10,6 +10,6 @@
 {
     cmd = "./metadb " $1
     cmd | getline dist 
-    close cmd
+    close(cmd)
     if (dist != "perl") print dist, $2
 }
