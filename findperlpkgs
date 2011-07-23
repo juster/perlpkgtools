@@ -1,0 +1,16 @@
+#!/bin/sh
+##
+# Print a list of perl module packages.
+#
+# Args: repository dirs (one level inside database dir)
+# Output: [perl package name]
+
+if [ $# -eq 0 ] ; then
+    echo "Usage: $0 [path to db dir]"
+    exit 1
+fi
+
+find "$1" -name 'desc' | xargs awk '
+BEGIN { RS = ""; FS = "\n" }
+$1 == "%NAME%" && $2 ~ /^perl-/ { print $2 }
+'

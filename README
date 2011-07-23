@@ -30,6 +30,7 @@ Misc Tools
 ----------
 getdbs          Download package databases and extract them in our cwd.
 findperlreqs    Scans the databases and prints requirements on perl modules.
+findperlpkgs    Scans the databases and prints /^perl-/ packages.
 findpkgdups     Scans the databases and prints /^perl-/ packages that
                 have the same name as provide-ed distributions.
 
