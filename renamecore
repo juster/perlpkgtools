@@ -1,0 +1,17 @@
+#!/usr/bin/awk -f
+##
+# Rename distributions to their new names on CPAN.
+
+BEGIN {
+    map["B-Deparse"] = ""
+    map["Filter-Util-Call"] = "Filter"
+    map["List-Util"] = "Scalar-List-Util"
+    map["Text-Tabs"] = "Text-Tabs+Wrap"
+}
+
+!($1 in map) { print }
+
+{
+    newname = map[$1]
+    if (length(newname) > 0) { $1 = newname; print }
+}

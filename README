@@ -18,6 +18,7 @@ gencorelist     Pass it the path to a perl source directory and it will
 + listmods      Lists the modules in the perl source's "lib" directory.
 + modoncpan     Filter out module names that are only supplied by perl.
                 Print CPAN distributions which also supply core modules.
++ renamecore    Maps distribution names to their corresponding CPAN names.
 ++ metadb       Utility script for querying http://cpanmetadb.appspot.com.
                 Used by oncpan.
 perlprovides    Run this next and it will print the value of the provides
