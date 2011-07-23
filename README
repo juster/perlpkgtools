@@ -16,7 +16,7 @@ gencorelist     Pass it the path to a perl source directory and it will
 + listdists     List the distributions in the perl source's "dist" and
                 "cpan" directories.
 + listmods      Lists the modules in the perl source's "lib" directory.
-+ oncpan        Filter out module names that are only supplied by perl.
++ modoncpan     Filter out module names that are only supplied by perl.
                 Print CPAN distributions which also supply core modules.
 ++ metadb       Utility script for querying http://cpanmetadb.appspot.com.
                 Used by oncpan.
@@ -33,6 +33,8 @@ findperlreqs    Scans the databases and prints requirements on perl modules.
 findperlpkgs    Scans the databases and prints /^perl-/ packages.
 findpkgdups     Scans the databases and prints /^perl-/ packages that
                 have the same name as provide-ed distributions.
+distoncpan      Filter out distributions name/ver pairs that are not
+                supplied on CPAN.
 
 The Distribution/Module Question
 --------------------------------

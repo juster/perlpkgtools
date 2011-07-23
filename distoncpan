@@ -1,0 +1,17 @@
+#!/usr/bin/awk -f
+
+{
+    while (1) {
+        cmd = "curl --silent http://search.cpan.org/dist/"$1"/"
+        ret = cmd|getline html
+        
+        if (ret == -1) {
+            print "curl returned an error" | "cat 1>&2"; next
+        }
+        if (ret == 0) break
+
+        if (html ~ /The distribution/ && html ~ /cannot be found/) next
+    }
+    close(cmd)
+    print
+}

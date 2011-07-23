@@ -8,4 +8,4 @@ if [ -z "$1" ] ; then
 fi
 
 ./listdists $1 >coredists
-./listmods $1 | ./oncpan >>coredists
+./listmods $1 | ./modoncpan >>coredists
