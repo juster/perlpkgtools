@@ -9,7 +9,7 @@ BEGIN {
     map["Text-Tabs"] = "Text-Tabs+Wrap"
 }
 
-!($1 in map) { print }
+!($1 in map) { print; next }
 
 {
     newname = map[$1]
