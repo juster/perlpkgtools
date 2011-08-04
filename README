@@ -34,6 +34,7 @@ findperlreqs    Scans the databases and prints requirements on perl modules.
 findperlpkgs    Scans the databases and prints /^perl-/ packages.
 findpkgdups     Scans the databases and prints /^perl-/ packages that
                 have the same name as provide-ed distributions.
+findaurdups     Print AUR packages that provide perl core modules.
 distoncpan      Filter out distributions name/ver pairs that are not
                 supplied on CPAN.
 
