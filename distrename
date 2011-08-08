@@ -3,15 +3,12 @@
 # Rename distributions to their new names on CPAN.
 
 BEGIN {
-    map["B-Deparse"] = ""
-    map["Filter-Util-Call"] = "Filter"
     map["List-Util"] = "Scalar-List-Util"
     map["Text-Tabs"] = "Text-Tabs+Wrap"
+    map["Cwd"] = "PathTools"
 }
 
-!($1 in map) { print; next }
-
 {
-    newname = map[$1]
-    if (length(newname) > 0) { $1 = newname; print }
+    if ($1 in map) print map[$1]
+    else print
 }
