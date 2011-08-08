@@ -5,4 +5,4 @@
 # Arg: path to the perl source directory
 # Output: a provides array suitable to insert into the perl package's PKGBUILD.
 
-./dist2pkg coredists | sort | ./fmtprovides
+./dist2pkg core.dists | sort | ./fmtprovides

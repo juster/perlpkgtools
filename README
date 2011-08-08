@@ -11,7 +11,7 @@ The tools are coded in sh, awk, and perl.
 Provides Tools
 --------------
 gencorelist     Pass it the path to a perl source directory and it will
-                write a list of core distributions to "coredists".
+                write a list of core distributions to "core.dists".
                 Run this first.
 + listdists     List the distributions in the perl source's "dist" and
                 "cpan" directories.

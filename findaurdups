@@ -7,7 +7,7 @@ use HTTP::Tiny;
 use JSON;
 
 my @corepkgs;
-open my $distfh, 'cat coredists | ./dist2pkg |' or die "open: $!";
+open my $distfh, 'cat core.dists | ./dist2pkg |' or die "open: $!";
 @corepkgs = sort map { (split)[0] } <$distfh>;
 close $distfh;
 
