@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+##
+# Print every perl-* package name that is depended on by packages in
+# the AUR.
+
+use warnings 'FATAL' => 'all';
+use strict;
+
+use LWP::UserAgent;
+use JSON::XS qw(decode_json);
+
+my $BASEURL = "http://juster.us/aurpc";
+
+my $ua = LWP::UserAgent->new();
+my $resp = $ua->get("$BASEURL/packages/perl-*/dependants");
+die "Failed to connect to juster.us: ", $resp->status_line
+    unless $resp->is_success;
+
+my %seen;
+$resp = decode_json($resp->content);
+for my $deps (values %$resp) {
+    for my $perlpkg (keys %$deps) {
+        print $perlpkg, "\n" unless $seen{$perlpkg}++;
+    }
+}
