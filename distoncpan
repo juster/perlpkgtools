@@ -1,15 +1,11 @@
 #!/usr/bin/awk -f
+##
+# Give a list of dist/version pairs in STDIN and this
+# will print out the dist/version pairs that are on cpan.
 
 {
-    while (1) {
-        cmd = "curl --silent http://search.cpan.org/dist/"$1"/"
-        ret = cmd|getline html
-        
-        if (ret == -1) {
-            print "curl returned an error" | "cat 1>&2"; next
-        }
-        if (ret == 0) break
-
+    cmd = "curl --silent http://search.cpan.org/dist/" $1 "/"
+    while (cmd|getline html > 0) {
         if (html ~ /The distribution/ && html ~ /cannot be found/) next
     }
     close(cmd)
