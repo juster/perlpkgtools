@@ -66,7 +66,13 @@ $ORS = "\n";
 
 my %seen;
 while (<>) {
-    my @F = split;
-    my ($pkgname, $pkgver) = (dist_pkgname($F[0]), dist_pkgver($F[1]));
-    print $pkgname, $pkgver unless $seen{$pkgname}++;
+    my ($name, $ver) = split;
+    next unless $name;
+
+    $name = dist_pkgname($name);
+
+    $ver ||= q{};
+    $ver = dist_pkgver($ver) if $ver;
+
+    print $name, $ver unless $seen{$name}++;
 }
