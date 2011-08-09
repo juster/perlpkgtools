@@ -24,7 +24,7 @@ BEGIN { RS="\n"; FS="/" }
     while(getline<path == 1) {
         if ($1 == "%NAME%") { name = $2; break }
     }
-    close path
+    close(path)
 
     perldeps = ""
     path = pkgdir "/depends"
@@ -34,7 +34,7 @@ BEGIN { RS="\n"; FS="/" }
             if ($i ~ /^perl-/) perldeps = perldeps $i " "
         }
     }
-    close path
+    close(path)
 
     RS="\n"; FS="/"
     if (name ~ /^perl/ || length(perldeps) > 0)
