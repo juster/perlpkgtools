@@ -136,6 +136,7 @@ package Modules;
 
 use HTTP::Tiny qw();
 use File::Find qw();
+use File::stat;
 
 *findfile = *File::Find::find;
 
@@ -162,16 +163,39 @@ sub find
     my $libdir = "$srcdir/lib/";
     die "failed to find $libdir directory" unless -d $libdir;
 
-    my @mods;
+    # Find only the module files that have not changed since perl
+    # was extracted. We don't want the files perl just recently
+    # installed into lib/. We processed those already.
+    my @modfiles;
     my $finder = sub {
-        return unless s{[.]pm\z}{};
-        my $path = "$_.pm";
+        return unless /[.]pm\z/;
+        push @modfiles, $_;
+    };
+    findfile({ 'no_chdir' => 1, 'wanted' => $finder }, $libdir);
+
+    # First we have to find what the oldest ctime
+    # actually is.
+    my $oldest = time;
+    for my $modfile (@modfiles) {
+        my $ctime = (stat $modfile)->ctime;
+        $oldest = $ctime if $ctime < $oldest;
+    }
+
+    # Then we filter out any file that was created more than a
+    # few seconds after that. Process the rest.
+    my @mods;
+    for (@modfiles) {
+        my $path = $_;
+        s{[.]pm\z}{};
+
+        my $ctime = (stat $path)->ctime;
+        next if $ctime - $oldest > 5;
+
         s{\A$libdir}{}; s{/}{::}g;
         my $mod = $_;
         my $ver = Common::evalver($path) || q{};
         push @mods, [ $mod, $ver ];
-    };
-    findfile({ 'no_chdir' => 1, 'wanted' => $finder }, $libdir);
+    }
 
     my %seen; # remove duplicates
     my @dists = grep { !$seen{ $_->[0] }++ } map {
