@@ -173,35 +173,40 @@ sub find
     };
     findfile({ 'no_chdir' => 1, 'wanted' => $finder }, $libdir);
 
-    # First we have to find what the oldest ctime
-    # actually is.
+    # First we have to find what the oldest ctime actually is.
     my $oldest = time;
-    for my $modfile (@modfiles) {
+    @modfiles = map {
+        my $modfile = $_;
         my $ctime = (stat $modfile)->ctime;
         $oldest = $ctime if $ctime < $oldest;
-    }
+        [ $modfile, $ctime ]; # save ctime for later
+    } @modfiles;
 
     # Then we filter out any file that was created more than a
     # few seconds after that. Process the rest.
     my @mods;
-    for (@modfiles) {
-        my $path = $_;
-        s{[.]pm\z}{};
+    for my $modfile (@modfiles) {
+        my ($mod, $ctime) = @$modfile;
+        next if $ctime - $oldest > 5; # ignore newer files
 
-        my $ctime = (stat $path)->ctime;
-        next if $ctime - $oldest > 5;
+        my $path = $mod;
+        $mod =~ s{[.]pm\z}{};
+        $mod =~ s{\A$libdir}{};
+        $mod =~ s{/}{::}g;
 
-        s{\A$libdir}{}; s{/}{::}g;
-        my $mod = $_;
         my $ver = Common::evalver($path) || q{};
         push @mods, [ $mod, $ver ];
     }
 
-    my %seen; # remove duplicates
-    my @dists = grep { !$seen{ $_->[0] }++ } map {
-        my $dist = cpan_provider($_->[0]);
-        $dist ? [$dist, $_->[1]] : ()
-    } @mods;
+    # Convert modules names to the dist names who provide them.
+    my %seen;
+    my @dists;
+    for my $modref (@mods) {
+        my ($mod, $ver) = @$modref;
+        my $dist = cpan_provider($mod) or next; # filter out core modules
+        next if $seen{$dist}++;                 # avoid duplicate dists
+        push @dists, [ $dist, $ver ];
+    }
     return @dists;
 }
 
