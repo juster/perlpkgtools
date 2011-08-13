@@ -30,10 +30,13 @@ perlprovides    Run this next and it will print the value of the provides
 Misc Tools
 ----------
 getdbs          Download package databases and extract them in our cwd.
-findperlreqs    Scans the databases and prints requirements on perl modules.
-findperlpkgs    Scans the databases and prints /^perl-/ packages.
-findpkgdups     Scans the databases and prints /^perl-/ packages that
+findreporeqs    Scans the databases and prints requirements on perl modules.
+findrepopkgs    Scans the databases and prints /^perl-/ packages.
+findrepodups    Scans the databases and prints /^perl-/ packages that
                 have the same name as provide-ed distributions.
+----------
+findaurreqs     Use AURPC (http://juster.us/aurpc) to list all
+                dependencies upon /^perl-/ packages.
 findaurdups     Print AUR packages that provide perl core modules.
 distoncpan      Filter out distributions name/ver pairs that are not
                 supplied on CPAN.
