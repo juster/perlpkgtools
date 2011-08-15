@@ -278,7 +278,6 @@ my @pkgs = map {
     [ $name, $ver ];
 } @dists;
 
-
 @pkgs = sort { $a->[0] cmp $b->[0] } @pkgs;
 
 for my $pkg (@pkgs) {
