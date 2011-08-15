@@ -258,16 +258,26 @@ sub version
 
 package main;
 
+my %CPANNAME = ('List-Util' => 'Scalar-List-Utils',
+                'Text-Tabs' => 'Text-Tabs+Wrap',
+                'Cwd'       => 'PathTools');
+
 my $perldir = shift or die "Usage: $0 [path to perl source directory]\n";
 die "$perldir is not a valid directory." unless -d $perldir;
 
 my @dists = (Dists::find($perldir), Modules::find($perldir));
+for my $dist (@dists) {
+    my $name = $dist->[0];
+    $dist->[0] = $CPANNAME{$name} if exists $CPANNAME{$name};
+}
+
 my @pkgs = map {
     my ($name, $ver) = @$_;
     $name = Dist2Pkg::name($name);
     $ver  = Dist2Pkg::version($ver);
     [ $name, $ver ];
 } @dists;
+
 
 @pkgs = sort { $a->[0] cmp $b->[0] } @pkgs;
 
