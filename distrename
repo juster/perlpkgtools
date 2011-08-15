@@ -3,7 +3,7 @@
 # Rename distributions to their new names on CPAN.
 
 BEGIN {
-    map["List-Util"] = "Scalar-List-Util"
+    map["List-Util"] = "Scalar-List-Utils"
     map["Text-Tabs"] = "Text-Tabs+Wrap"
     map["Cwd"] = "PathTools"
 }
