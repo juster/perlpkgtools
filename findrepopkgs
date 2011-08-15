@@ -10,7 +10,12 @@ if [ $# -eq 0 ] ; then
     exit 1
 fi
 
-find "$1" -name 'desc' | xargs awk '
+echo $#
+while [ $# -gt 0 ] ; do
+    dbdir=$1
+    shift
+    find "$dbdir" -name 'desc' | xargs awk '
 BEGIN { RS = ""; FS = "\n" }
 $1 == "%NAME%" && $2 ~ /^perl-/ { print $2 }
 '
+done
