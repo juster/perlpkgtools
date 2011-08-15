@@ -261,12 +261,17 @@ package main;
 my $perldir = shift or die "Usage: $0 [path to perl source directory]\n";
 die "$perldir is not a valid directory." unless -d $perldir;
 
-my @dists = sort { $a->[0] cmp $b->[0] }
-    (Dists::find($perldir), Modules::find($perldir));
-
-for my $dist (@dists) {
-    my ($name, $ver) = @$dist;
+my @dists = (Dists::find($perldir), Modules::find($perldir));
+my @pkgs = map {
+    my ($name, $ver) = @$_;
     $name = Dist2Pkg::name($name);
     $ver  = Dist2Pkg::version($ver);
+    [ $name, $ver ];
+} @dists;
+
+@pkgs = sort { $a->[0] cmp $b->[0] } @pkgs;
+
+for my $pkg (@pkgs) {
+    my ($name, $ver) = @$pkg;
     print "$name=$ver\n";
 }
