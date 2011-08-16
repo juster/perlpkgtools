@@ -7,5 +7,5 @@ if [ -z "$1" ] ; then
     exit 1
 fi
 
-./listdists $1 | ./renamecore >core.dists
+./listdists $1 | ./distrename >core.dists
 ./listmods $1 | ./modoncpan >>core.dists
