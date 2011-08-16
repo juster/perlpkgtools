@@ -2,5 +2,5 @@
 ##
 # Run to find official packages that are duplicates of core packages.
 
-./findperlpkgs dbs > perlpkgs
+./findrepopkgs dbs > repo.perlpkgs
 ./dist2pkg core.dists | awk '{ print $1 }' | cat perlpkgs - | sort | uniq -d
