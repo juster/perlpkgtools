@@ -1,0 +1,34 @@
+#!/bin/sh
+
+uniqof()
+{
+    sort - "$1" | uniq -d | sort - "$1" | uniq -u
+}
+
+distreqs()
+(
+    cd "$depsdir"
+    ./distdeps -R $1 \
+        | awk '{ for (i=2; i<=NF; i++) print $i }' \
+        | sort | uniq
+
+    return $?
+)
+
+depsdir=~/code/cpandepslite
+dist=$1
+
+if [ ! -f "$dist.reqs" ] ; then
+    distreqs "$dist" > "$dist.reqs"
+    if [ $? -ne 0 ] ; then
+        echo "error: failed to get requirements of $dist"
+        exit 1
+    fi
+fi
+
+# Remove core distributions from list...
+awk '{ print $1 }' core.dists | uniqof "$dist.reqs" | ./dist2pkg \
+    > "$dist.deps"
+
+# Remove perl packages already in the repos from list...
+cat repo.perlpkgs | uniqof "$dist.deps" > "$dist.deps.todo"
