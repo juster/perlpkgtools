@@ -10,7 +10,6 @@ if [ $# -eq 0 ] ; then
     exit 1
 fi
 
-echo $#
 while [ $# -gt 0 ] ; do
     dbdir=$1
     shift
