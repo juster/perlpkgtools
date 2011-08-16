@@ -13,28 +13,23 @@ use English qw(-no_match_vars);
 # Copied from CPANPLUS::Dist::Arch
 sub dist_pkgname
 {
-    my ($distname) = @_;
+    my ($name) = @_;
+    my $orig = $name;
 
     # Package names should be lowercase and consist of alphanumeric
     # characters only (and hyphens!)...
-    $distname =  lc $distname;
-    $distname =~ tr/_/-/;
-    $distname =~ tr/-a-z0-9+//cd; # Delete all other chars
-    $distname =~ s/-[+]/-/g;      # + next to - looks weird
-    $distname =~ s/[+]-/-/g;
-    $distname =~ tr/-/-/s;
+    $name =~ tr/A-Z/a-z/;
+    $name =~ tr/_+/-/; # _ and +'s converted to - (ie Tabbed-Text+Wrap)
+    $name =~ tr/-a-z0-9+//cd; # Delete all other chars.
+    $name =~ tr/-/-/s;
 
     # Delete leading or trailing hyphens...
-    $distname =~ s/\A-//;
-    $distname =~ s/-\z//;
+    $name =~ s/\A-|-\z//g;
 
-    die qq{Dist name '$distname' completely violates packaging standards}
-        if ( length $distname == 0 );
+    die qq{Dist. name '$orig' completely violates packaging standards}
+        unless $name;
 
-    # Don't prefix the package with perl- if it IS perl...
-    $distname = "perl-$distname" unless ( $distname eq 'perl' );
-
-    return $distname;
+    return "perl-$name";
 }
 
 sub dist_pkgver
@@ -45,18 +40,13 @@ sub dist_pkgver
     $version =~ tr/-/./;
     $version =~ tr/_0-9.-//cd;
 
-    # Developer packages have a ..._## at the end though...
-    unless (( $version =~ tr/_/_/ == 1 ) && ( $version =~ /\d_\d+\z/ )) {
-        $version =~ tr/_//d; # Delete underscores otherwise.
-    }
-
     # Remove developer versions because pacman has no special logic
-    # to handle comparing them to regular versions like perl does.
-    $version =~ s/_\d+\z//;
+    # to compare them to regular versions like perl does.
+    $version =~ s/_[^_]+\z//;
 
-    $version =~ tr/././s;
-    $version =~ s/[.]$//;
-    $version =~ s/^[.]//;
+    $version =~ tr/_//d;  # delete other underscores
+    $version =~ tr/././s; # only one period at a time
+    $version =~ s/\A[.]|[.]\z//g; # shouldn't start or stop with a period
 
     return $version;
 }
@@ -70,9 +60,13 @@ while (<>) {
     next unless $name;
 
     $name = dist_pkgname($name);
+    next if $seen{$name}++;
 
-    $ver ||= q{};
-    $ver = dist_pkgver($ver) if $ver;
-
-    print $name, $ver unless $seen{$name}++;
+    if ($ver) {
+        $ver = dist_pkgver($ver) if $ver;
+        print $name, $ver;
+    }
+    else {
+        print $name
+    }
 }
