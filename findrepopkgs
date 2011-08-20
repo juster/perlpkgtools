@@ -3,7 +3,7 @@
 # Print a list of perl module packages.
 #
 # Args: repository dirs (one level inside database dir)
-# Output: [perl package name]
+# Output: [perl package name] [package version] [packager email]
 
 if [ $# -eq 0 ] ; then
     echo "Usage: $0 [path to db dir]"
@@ -14,7 +14,14 @@ while [ $# -gt 0 ] ; do
     dbdir=$1
     shift
     find "$dbdir" -name 'desc' | xargs awk '
-BEGIN { RS = ""; FS = "\n" }
-$1 == "%NAME%" && $2 ~ /^perl-/ { print $2 }
+BEGIN { RS=""; FS="\n"; ORS="\n"; OFS="\t" }
+$1 == "%NAME%" && $2 ~ /^perl-/ { name = $2 }
+$1 == "%VERSION%" { ver = $2 }
+$1 == "%PACKAGER%" && name { 
+    match($2, /<[^>]+>/)
+    author = substr($2, RSTART+1, RLENGTH-2)
+    print name, ver, author
+    name = 0
+}
 '
 done
