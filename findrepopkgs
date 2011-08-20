@@ -18,8 +18,10 @@ BEGIN { RS=""; FS="\n"; ORS="\n"; OFS="\t" }
 $1 == "%NAME%" && $2 ~ /^perl-/ { name = $2 }
 $1 == "%VERSION%" { ver = $2 }
 $1 == "%PACKAGER%" && name { 
-    match($2, /<[^>]+>/)
-    author = substr($2, RSTART+1, RLENGTH-2)
+    if (match($2, /<[^>]+>/)) {
+        author = substr($2, RSTART+1, RLENGTH-2)
+    }
+    else author = $2
     print name, ver, author
     name = 0
 }
