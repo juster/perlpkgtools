@@ -15,14 +15,13 @@ for dbdir ; do
 BEGIN { RS=""; FS="\n"; ORS="\n"; OFS="\t" }
 $1 == "%NAME%" && $2 ~ /^perl-/ { name = $2 }
 $1 == "%VERSION%" { ver = $2 }
-$1 == "%URL%" { url = $2 }
 $1 == "%PACKAGER%" && name { 
     if (match($2, /<[^>]+>/)) {
         author = substr($2, RSTART+1, RLENGTH-2)
     }
     else author = $2
     gsub(/ /, "", author)
-    print name, ver, url, author
+    print name, ver, author
     name = 0
 }
 '
