@@ -31,4 +31,4 @@ awk '{ print $1 }' core.dists | uniqof "$dist.reqs" | ./dist2pkg \
     > "$dist.deps"
 
 # Remove perl packages already in the repos from list...
-cat repo.perlpkgs | uniqof "$dist.deps" > "$dist.deps.todo"
+cut -f 1 repo.perlpkgs | uniqof "$dist.deps" > "$dist.deps.todo"
