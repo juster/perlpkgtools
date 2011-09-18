@@ -3,7 +3,7 @@
 # Looks through extracted databases searching for dependencies on
 # perl module packages.
 #
-# Args: repository dirs (one level inside database dir)
+# Args: Names of repository dirs ("dbs/$name" dir is checked)
 # Output: [repo name] [package name] [space seperated deps]
 
 if [ $# -eq 0 ] ; then
@@ -11,9 +11,9 @@ if [ $# -eq 0 ] ; then
     exit 1
 fi
 
-while [ $# -gt 0 ] ; do
-    repo=$1; shift
-    find "$repo" -maxdepth 1 -type d | awk '
+for repo
+do
+    find "dbs/$repo" -maxdepth 1 -type d | awk '
 BEGIN { RS="\n"; FS="/" }
 
 {

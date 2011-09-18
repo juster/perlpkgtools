@@ -11,9 +11,9 @@ if [ $# -eq 0 ] ; then
 fi
 
 for dbdir ; do
-    find "dbs/$dbdir" -name 'desc' | xargs awk '
+    find "dbs/$dbdir" -name 'desc' | xargs awk -v repo="$dbdir" '
 BEGIN { RS=""; FS="\n"; ORS="\n"; OFS="\t" }
-$1 == "%NAME%" && $2 ~ /^perl-/ { name = $2 }
+$1 == "%NAME%" { if ($2 ~ /^perl|-perl$/) name = $2; else name = 0 }
 $1 == "%VERSION%" { ver = $2 }
 $1 == "%PACKAGER%" && name { 
     if (match($2, /<[^>]+>/)) {
@@ -21,7 +21,7 @@ $1 == "%PACKAGER%" && name {
     }
     else author = $2
     gsub(/ /, "", author)
-    print name, ver, author
+    print repo, name, ver, author
     name = 0
 }
 '

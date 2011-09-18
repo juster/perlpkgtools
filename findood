@@ -9,19 +9,22 @@
 # called "dist" that should be created with the "cpandists" script.
 
 {
-    dist = $1
+    dist = $2
     sub(/^perl-/, "", dist)
-    pkgname[dist] = $1
+    pkg[dist,1] = $1
+    pkg[dist,2] = $2
+    pkg[dist,3] = $4
 
-    sub(/-[0-9]+$/, "", $2)
-    sub(/^[0-9]+:/, "", $2)
-    pkgver[dist] = $2
+    sub(/-[0-9]+$/, "", $3)
+    sub(/^[0-9]+:/, "", $3)
+    pkgver[dist] = $3
 }
 
 END {
     while (getline<"dists" > 0) {
-        key = tolower($1)
-        if (! (key in pkgver)) continue
-        if ($2 != pkgver[key]) print pkgname[key], pkgver[key], $1, $2
+        k = tolower($1)
+        if (! (k in pkgver)) continue
+        if ($2 == pkgver[k]) continue
+        print pkg[k,1], pkg[k,2], pkgver[k], $1, $2, pkg[k,3] | "sort"
     }
 }
