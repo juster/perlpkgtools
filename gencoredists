@@ -9,3 +9,5 @@ fi
 
 ./listdists $1 | ./distrename >core.dists
 ./listmods $1 | ./modoncpan >>core.dists
+sort core.dists > core.dists.new
+mv core.dists.new core.dists
