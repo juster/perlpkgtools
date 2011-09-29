@@ -8,7 +8,5 @@ BEGIN {
     map["Cwd"] = "PathTools"
 }
 
-{
-    if ($1 in map) print map[$1]
-    else print
-}
+$1 in map { $1 = map[$1] }
+1
