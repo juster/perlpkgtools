@@ -6,7 +6,7 @@
 # Output: [perl package name] [package version] [packager email]
 
 if [ $# -eq 0 ] ; then
-    echo "Usage: $0 [db dir name]"
+    echo "Usage: $0 [db dir name]" 1>&2
     exit 1
 fi
 
