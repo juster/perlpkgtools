@@ -8,6 +8,7 @@ NR < 10 { next }
     len = split(file, a, ".")
 
     if (!match(a[1], /[-_][vV]?[0-9]+$/)) {
+        if (seenbad[$3]++) next
         print "error: failed to grok " $3 | "cat 1>&2"
         next
     }
