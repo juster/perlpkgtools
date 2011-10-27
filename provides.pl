@@ -3,7 +3,8 @@
 # Script for printing out a provides list of every CPAN distribution
 # that is bundled with perl.
 #
-# Justin Davis <jrcd83@gmail.com>
+# Copyright 2011 (c) Justin Davis <jrcd83@gmail.com>
+# Released under the same terms as perl itself.
 
 use warnings 'FATAL' => 'all';
 use strict;
