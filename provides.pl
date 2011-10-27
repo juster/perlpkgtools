@@ -127,7 +127,7 @@ sub scan_distroot
 sub find
 {
     my ($srcdir) = @_;
-    return map { scan_distroot($_) } glob "$srcdir/{cpan,dist}";
+    return map { scan_distroot($_) } glob "$srcdir/{cpan,dist,ext}";
 }
 
 #-----------------------------------------------------------------------------

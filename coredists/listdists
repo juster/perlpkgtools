@@ -128,7 +128,7 @@ my $srcdir = shift @ARGV or die "Usage: $0 [perl source dir]\n";
 
 die "$srcdir is not a directory" unless -d $srcdir;
 
-for my $subdir (qw/cpan dist/) {
+for my $subdir (qw/cpan dist ext/) {
     my $found_ref = scan_distroot("$srcdir/$subdir");
     while (@$found_ref > 0) {
         my ($dist, $ver) = splice @$found_ref, 0, 2;
