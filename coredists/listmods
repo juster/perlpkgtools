@@ -13,12 +13,15 @@ use strict;
 sub evalver
 {
     my ($path, $mod) = @_;
-    $mod ||= "";
 
     open my $fh, '<', $path or die "open $path: $!";
 
+    my $m = ($mod
+        ? qr/(?:\$${mod}::VERSION|\$VERSION)/
+        : qr/\$VERSION/);
+
     while (<$fh>) {
-        next unless /\s*(?:\$${mod}::|\$)VERSION\s*=\s*.+/;
+        next unless /\s*$m\s*=\s*.+/;
         my $line = $_;
         chomp $line;
 
@@ -46,6 +49,6 @@ find({'no_chdir' => 1,
           my $path = "$_.pm";
           s{\A$libdir}{}; s{/}{::}g;
           my $mod = $_;
-          my $ver = evalver($path) || q{};
+          my $ver = evalver($path, $mod) || q{};
           print "$mod $ver";
       }}, $libdir);

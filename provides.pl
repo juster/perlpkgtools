@@ -13,20 +13,31 @@ package Common;
 sub evalver
 {
     my ($path, $mod) = @_;
-    $mod ||= "";
 
     open my $fh, '<', $path or die "open $path: $!";
 
+    my $m = ($mod
+        ? qr/(?:\$${mod}::VERSION|\$VERSION)/
+        : qr/\$VERSION/);
+
     while (<$fh>) {
-        next unless /\s*(?:\$${mod}::|\$)VERSION\s*=\s*(.+)/;
-        my $ver = eval $1;
+        next unless /\s*$m\s*=\s*.+/;
+        my $line = $_;
+        chomp $line;
+
+        my $ver;
+        {
+            no strict;
+            $ver = eval $line;
+        }
         return $ver unless $@;
-        warn qq{$path:$. bad version string "$ver"\n};
+        warn qq{$path:$. bad version string "$line"\n};
     }
 
     close $fh;
     return undef;
 }
+
 
 #-----------------------------------------------------------------------------
 
@@ -194,7 +205,7 @@ sub find
         $mod =~ s{\A$libdir}{};
         $mod =~ s{/}{::}g;
 
-        my $ver = Common::evalver($path) || q{};
+        my $ver = Common::evalver($path, $mod) || q{};
         push @mods, [ $mod, $ver ];
     }
 
