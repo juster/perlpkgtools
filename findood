@@ -8,23 +8,25 @@
 # This script reads the list of all CPAN distributions from a file
 # called "dist" that should be created with the "cpandists" script.
 
-{
-    dist = $2
-    sub(/^perl-/, "", dist)
-    pkg[dist,1] = $1
-    pkg[dist,2] = $2
-    pkg[dist,3] = $4
+BEGIN {
+    ovrd["libwww-perl"] = "libwww"
+}
 
+{
+    name = $2
+    sub(/^perl-/, "", $2)
     sub(/-[0-9]+$/, "", $3)
     sub(/^[0-9]+:/, "", $3)
-    pkgver[dist] = $3
+    repo[$2] = $1
+    pkg[$2] = name
+    pkgver[$2] = $3
+    author[$2] = $4
 }
 
 END {
-    while (getline<"dists" > 0) {
-        k = tolower($1)
-        if (! (k in pkgver)) continue
-        if ($2 == pkgver[k]) continue
-        print pkg[k,1], pkg[k,2], pkgver[k], $1, $2, pkg[k,3] | "sort"
+    while(getline<"dists" > 0){
+        k = ($1 in ovrd ? ovrd[$1] : tolower($1))
+        if(!(k in pkgver) || $2 == pkgver[k]) continue
+        print repo[k], pkg[k], pkgver[k], $1, $2, author[k] | "sort"
     }
 }
