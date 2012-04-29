@@ -11,28 +11,34 @@ open my $distfh, 'cat core.dists | ./dist2pkg |' or die "open: $!";
 @corepkgs = sort map { (split)[0] } <$distfh>;
 close $distfh;
 
-my $after = '';
 my $httpc = HTTP::Tiny->new;
 my $url = "http://juster.us/aurpc/packages/perl-*";
 
 my @aurpkgs;
-while ($url) {
+while($url){
     print STDERR $url, "\n";
     my $resp = $httpc->get($url);
-    die $resp->{'reason'} unless $resp->{'success'};
+    die $resp->{'reason'} unless($resp->{'success'});
 
     $resp = decode_json($resp->{'content'});
-    push @aurpkgs, map { [ $_->{'name'}, $_->{'version'}, $_->{'author'} ] }
-        @{$resp->{'matches'}};
+    push @aurpkgs,
+        map { [ $_->{'name'}, $_->{'version'}, $_->{'author'} ] }
+            @{$resp->{'matches'}};
     $url = $resp->{'next_url'};
 }
 
 @aurpkgs = sort { $a->[0] cmp $b->[0] } @aurpkgs;
 
 # Go through the two sorted lists, akin to 'uniq -d'.
-my ($i, $j) = (0, 0);
-while ($i < @corepkgs && $j < @aurpkgs) {
-    if ($corepkgs[$i] lt $aurpkgs[$j]->[0]) { $i++; }
-    elsif ($corepkgs[$i] gt $aurpkgs[$j]->[0]) { $j++; }
-    else { print "@{$aurpkgs[$j]}\n"; $i++; $j++; }
+my($i, $j) = (0, 0);
+while($i < @corepkgs && $j < @aurpkgs){
+    if($corepkgs[$i] lt $aurpkgs[$j][0]){
+        $i++;
+    }elsif($corepkgs[$i] gt $aurpkgs[$j][0]){
+        $j++;
+    }else{
+        print "@{$aurpkgs[$j]}\n";
+        $i++;
+        $j++;
+    }
 }
