@@ -26,7 +26,7 @@ sub evalver
         chomp $ln;
         my $ver = do { no strict; eval $ln };
         return $ver unless $@;
-        #warn qq{$path:$. bad version string in "$ln"\n};
+        die qq{$path:$. bad version string in "$ln"\n};
     }
 
     close $fh;
@@ -175,6 +175,7 @@ sub find
     my @modfiles;
     my $finder = sub {
         return unless /[.]pm\z/;
+        return if m{\Q$libdir\E[^/]+/t/}; # ignore testing modules
         push @modfiles, $_;
     };
     findfile({ 'no_chdir' => 1, 'wanted' => $finder }, $libdir);
