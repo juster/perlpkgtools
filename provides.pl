@@ -1,10 +1,16 @@
 # provides.pl
 ##
 # Script for printing out a provides list of every CPAN distribution
-# that is bundled with perl.
+# that is bundled with perl. You can run it before building perl
+# or you can run it after building perl. Required modules are in core
+# for perl 5.13 and above.  It might be nice if this didn't require
+# HTTP::Tiny and maybe just used wget or curl.
 #
-# Copyright 2011 (c) Justin Davis <jrcd83@gmail.com>
-# Released under the same terms as perl itself.
+# This script uses HTTP::Tiny to query Tatsuhiko Miyagawa's webapp at
+# cpanmetadb.plackperl.com to cross-reference module files to their
+# providing CPAN distribution. Thank you Miyagawa!
+#
+# - Justin "juster" Davis <jrcd83@gmail.com>
 
 use warnings 'FATAL' => 'all';
 use strict;
@@ -149,7 +155,7 @@ use File::stat;
 sub cpan_provider
 {
     my ($module) = @_;
-    my $url = "http://cpanmetadb.appspot.com/v1.0/package/$module";
+    my $url = "http://cpanmetadb.plackperl.com/v1.0/package/$module";
     my $http = HTTP::Tiny->new;
     my $resp = $http->get($url);
     return undef unless $resp->{'success'};
