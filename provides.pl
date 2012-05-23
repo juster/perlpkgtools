@@ -21,18 +21,12 @@ sub evalver
         ? qr/(?:\$${mod}::VERSION|\$VERSION)/
         : qr/\$VERSION/);
 
-    while (<$fh>) {
-        next unless /\s*$m\s*=\s*.+/;
-        my $line = $_;
-        chomp $line;
-
-        my $ver;
-        {
-            no strict;
-            $ver = eval $line;
-        }
+    while (my $ln = <$fh>) {
+        next unless $ln =~ /\s*$m\s*=\s*.+/;
+        chomp $ln;
+        my $ver = do { no strict; eval $ln };
         return $ver unless $@;
-        warn qq{$path:$. bad version string "$line"\n};
+        #warn qq{$path:$. bad version string in "$ln"\n};
     }
 
     close $fh;
