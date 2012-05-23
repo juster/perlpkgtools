@@ -7,7 +7,7 @@
 # HTTP::Tiny and maybe just used wget or curl.
 #
 # This script uses HTTP::Tiny to query Tatsuhiko Miyagawa's webapp at
-# cpanmetadb.plackperl.com to cross-reference module files to their
+# cpanmetadb.plackperl.org to cross-reference module files to their
 # providing CPAN distribution. Thank you Miyagawa!
 #
 # - Justin "juster" Davis <jrcd83@gmail.com>
@@ -155,7 +155,7 @@ use File::stat;
 sub cpan_provider
 {
     my ($module) = @_;
-    my $url = "http://cpanmetadb.plackperl.com/v1.0/package/$module";
+    my $url = "http://cpanmetadb.plackperl.org/v1.0/package/$module";
     my $http = HTTP::Tiny->new;
     my $resp = $http->get($url);
     return undef unless $resp->{'success'};
