@@ -12,21 +12,17 @@ repourl() {
 }
 
 if [ "$#" -eq 0 ] ; then
-    set -- 'core' 'extra' 'community'
+    set -- core extra community
 fi
 
 mkdir dbs 2>/dev/null
 cd dbs
 
-while [ "$#" -gt 0 ] ; do
-    repo=$1
-    shift
+for repo
+do
     url=$(repourl "$repo" "$ARCH")
 
-    if ! curl -LO "$url" ; then
-        echo "curl failed to dl $url"
-        exit 1
-    fi
+    curl -sSLO "$url" || exit 1
 
     rm -rf "$repo"
     mkdir "$repo"
@@ -37,4 +33,5 @@ while [ "$#" -gt 0 ] ; do
     fi
     cd ..
     rm "$repo.db.tar.gz"
+    echo "$repo"
 done
