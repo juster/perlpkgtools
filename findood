@@ -14,9 +14,12 @@ BEGIN {
 
 {
     name = $2
-    sub(/^perl-/, "", $2)
+    if(!sub(/^perl-/, "", $2)){
+        $2 = "app-" $2
+    }
     sub(/-[0-9]+$/, "", $3)
     sub(/^[0-9]+:/, "", $3)
+
     repo[$2] = $1
     pkg[$2] = name
     pkgver[$2] = $3
