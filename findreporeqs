@@ -29,7 +29,7 @@ BEGIN { RS="\n"; FS="/" }
     perldeps = ""
     path = pkgdir "/depends"
     while(getline<path == 1) {
-        if($1 != "%DEPENDS%") continue
+        if($1 !~ /%(MAKE|CHECK)?DEPENDS%/) continue
         for (i=2; i<=NF; i++) {
             if ($i ~ /^perl-/) perldeps = perldeps $i " "
         }
